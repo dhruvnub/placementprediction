@@ -127,9 +127,9 @@ marshmallow==3.26.2
 matplotlib==3.10.8
 mccabe==0.7.0
 mdurl==0.1.2
-mlflow==2.9.2
-mlflow-skinny==2.9.2
-mlflow-tracing==3.10.1
+mlflow==2.15.0
+mlflow-skinny==2.15.0
+mlflow-tracing==2.15.0
 msal==1.35.1
 msal-extensions==1.3.1
 msrest==0.7.1
@@ -153,7 +153,6 @@ opentelemetry-instrumentation-requests==0.61b0
 opentelemetry-instrumentation-urllib==0.61b0
 opentelemetry-instrumentation-urllib3==0.61b0
 opentelemetry-instrumentation-wsgi==0.61b0
-opentelemetry-proto==1.34.0  # or latest <1.35.x
 opentelemetry-resource-detector-azure==0.1.5
 opentelemetry-sdk==1.40.0
 opentelemetry-semantic-conventions==0.61b0
