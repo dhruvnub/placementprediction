@@ -159,7 +159,7 @@ opentelemetry-sdk==1.40.0
 opentelemetry-semantic-conventions==0.61b0
 opentelemetry-util-http==0.61b0
 orjson==3.11.8
-packaging==23.2
+packaging
 pandas==2.3.3
 paramiko==3.5.1
 pathspec==0.12.1
