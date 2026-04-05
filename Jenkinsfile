@@ -9,6 +9,7 @@ pipeline {
         EXPERIMENT_NAME = 'placementmlops'
         COMPUTE_NAME    = 'cpu-cluster'
         ACR_NAME        = 'placementmlops.azurecr.io/placement-api:latest'
+        PYTHON          = '"C:\\Users\\inYodreamzz\\anaconda3\\envs\\mlops\\python.exe"'
     }
 
     stages {
@@ -21,21 +22,31 @@ pipeline {
         }
 
         stage('Install Dependencies') {
-    steps {
-        echo '🔧 Installing Python packages...'
+            steps {
+                echo '🔧 Installing Python packages...'
+                bat "%PYTHON% -m pip install --upgrade pip setuptools wheel"
+                bat "%PYTHON% -m pip install -r requirements.txt --use-feature=fast-deps"
+            }
+        }
 
-        // Upgrade pip and setuptools first
-        bat '"C:\\Users\\inYodreamzz\\anaconda3\\envs\\mlops\\python.exe" -m pip install --upgrade pip setuptools wheel'
-
-        // Install from requirements.txt (make sure protobuf is >=4.25.8)
-        bat '"C:\\Users\\inYodreamzz\\anaconda3\\envs\\mlops\\python.exe" -m pip install -r requirements.txt --use-feature=fast-deps'
-    }
-}
+        stage('Pull Data from Azure (DVC)') {
+            steps {
+                echo '📦 Pulling data from Azure Blob Storage via DVC...'
+                withCredentials([
+                    string(credentialsId: 'AZURE_STORAGE_CONNECTION_STRING', variable: 'AZURE_STORAGE_CONNECTION_STRING')
+                ]) {
+                    bat """
+                        %PYTHON% -m dvc remote modify azureblob connection_string "%AZURE_STORAGE_CONNECTION_STRING%" --local
+                        %PYTHON% -m dvc pull -v
+                    """
+                }
+            }
+        }
 
         stage('Train Model') {
             steps {
                 echo '🧠 Training placement prediction model...'
-                bat '"C:\\Users\\inYodreamzz\\anaconda3\\envs\\mlops\\python.exe" train.py'
+                bat "%PYTHON% train.py"
             }
         }
 
@@ -49,7 +60,7 @@ pipeline {
                     string(credentialsId: 'AZURE_SUBSCRIPTION_ID',  variable: 'AZ_SUB_ID'),
                 ]) {
                     bat """
-                        "C:\\Users\\inYodreamzz\\anaconda3\\envs\\mlops\\python.exe" azure_ml_job.py ^
+                        %PYTHON% azure_ml_job.py ^
                             --client-id       %AZ_CLIENT_ID%     ^
                             --client-secret   %AZ_CLIENT_SECRET% ^
                             --tenant-id       %AZ_TENANT_ID%     ^
