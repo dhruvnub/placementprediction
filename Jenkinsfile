@@ -21,11 +21,16 @@ pipeline {
         }
 
         stage('Install Dependencies') {
-            steps {
-                echo '🔧 Installing Python packages...'
-                bat '"C:\\Users\\inYodreamzz\\anaconda3\\envs\\mlops\\python.exe" -m pip install -r requirements.txt'
-            }
-        }
+    steps {
+        echo '🔧 Installing Python packages...'
+
+        // Upgrade pip and setuptools first
+        bat '"C:\\Users\\inYodreamzz\\anaconda3\\envs\\mlops\\python.exe" -m pip install --upgrade pip setuptools wheel'
+
+        // Install from requirements.txt (make sure protobuf is >=4.25.8)
+        bat '"C:\\Users\\inYodreamzz\\anaconda3\\envs\\mlops\\python.exe" -m pip install -r requirements.txt --use-feature=fast-deps'
+    }
+}
 
         stage('Train Model') {
             steps {
