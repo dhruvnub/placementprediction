@@ -18,6 +18,8 @@ from sklearn.metrics import (
 import mlflow
 import mlflow.sklearn
 import joblib
+from dotenv import load_dotenv
+load_dotenv()
 
 # ─────────────────────────────────────────────────────────────────────────────
 # MLflow Setup — reads MLFLOW_TRACKING_URI from environment
@@ -103,7 +105,7 @@ for model_name, cfg in candidates.items():
             clf,
             artifact_path="model",
             registered_model_name=MODEL_NAME
-        )
+            )
 
         print(f"\n  [{model_name}]")
         for k, v in metrics.items():
