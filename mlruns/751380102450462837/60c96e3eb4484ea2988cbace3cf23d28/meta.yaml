@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/inYodreamzz/Desktop/placement-mlops/mlruns/751380102450462837/60c96e3eb4484ea2988cbace3cf23d28/artifacts
+end_time: 1775413385326
+entry_point_name: ''
+experiment_id: '751380102450462837'
+lifecycle_stage: active
+run_id: 60c96e3eb4484ea2988cbace3cf23d28
+run_name: LogisticRegression-run
+run_uuid: 60c96e3eb4484ea2988cbace3cf23d28
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1775413382269
+status: 3
+tags: []
+user_id: inYodreamzz

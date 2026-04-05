@@ -74,6 +74,9 @@ class BatchRequest(BaseModel):
     students: list[Student]
 
 # ── Endpoints ──────────────────────────────────────────────────────────────
+@app.get("/robots933456.txt", include_in_schema=False)
+def robots():
+    return {"status": "healthy"}
 @app.get("/", include_in_schema=False)
 def serve_ui():
     if os.path.exists(UI_PATH):

@@ -6,9 +6,9 @@ pipeline {
     environment {
         RESOURCE_GROUP  = 'rg-mlops-exp'
         WORKSPACE_NAME  = 'mlops-workspace'
-        EXPERIMENT_NAME = 'placement-prediction'
+        EXPERIMENT_NAME = 'placementmlops'
         COMPUTE_NAME    = 'cpu-cluster'
-        ACR_NAME        = 'placementmlops.azurecr.io'
+        ACR_NAME        = 'placementmlops.azurecr.io/placement-api:latest'
     }
 
     stages {

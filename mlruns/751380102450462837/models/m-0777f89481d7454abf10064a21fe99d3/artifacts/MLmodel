@@ -1,0 +1,23 @@
+artifact_path: file:///C:/Users/inYodreamzz/Desktop/placement-mlops/mlruns/751380102450462837/models/m-0777f89481d7454abf10064a21fe99d3/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.10.0
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.7.2
+    skops_trusted_types: null
+mlflow_version: 3.9.0
+model_id: m-0777f89481d7454abf10064a21fe99d3
+model_size_bytes: 912
+model_uuid: m-0777f89481d7454abf10064a21fe99d3
+prompts: null
+run_id: 4e8a636768fd42d99b4c777f7e61a8a7
+utc_time_created: '2026-04-05 18:00:18.892841'

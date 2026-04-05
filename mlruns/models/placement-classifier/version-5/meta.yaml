@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1775413382224
+current_stage: None
+description: null
+last_updated_timestamp: 1775413382224
+name: placement-classifier
+run_id: c1707c4de9c14f71b6674e34284f909f
+run_link: null
+source: file:///C:/Users/inYodreamzz/Desktop/placement-mlops/mlruns/751380102450462837/c1707c4de9c14f71b6674e34284f909f/artifacts/model
+status: READY
+status_message: null
+storage_location: file:///C:/Users/inYodreamzz/Desktop/placement-mlops/mlruns/751380102450462837/c1707c4de9c14f71b6674e34284f909f/artifacts/model
+user_id: null
+version: 5
