@@ -9,6 +9,8 @@ pipeline {
         EXPERIMENT_NAME = 'placement-prediction'
         COMPUTE_NAME    = 'cpu-cluster'
         ACR_NAME        = 'placementmlops.azurecr.io'
+        // Use conda mlops environment Python directly
+        PYTHON = 'C:\\Users\\inYodreamzz\\anaconda3\\envs\\mlops\\python.exe'
     }
 
     stages {
@@ -23,14 +25,14 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 echo '🔧 Installing Python packages...'
-                bat 'pip install -r requirements.txt'
+                bat '%PYTHON% -m pip install -r requirements.txt'
             }
         }
 
         stage('Train Model') {
             steps {
                 echo '🧠 Training placement prediction model...'
-                bat 'python train.py'
+                bat '%PYTHON% train.py'
             }
         }
 
@@ -44,7 +46,7 @@ pipeline {
                     string(credentialsId: 'AZURE_SUBSCRIPTION_ID',  variable: 'AZ_SUB_ID'),
                 ]) {
                     bat """
-                        python azure_ml_job.py ^
+                        %PYTHON% azure_ml_job.py ^
                             --client-id       %AZ_CLIENT_ID%     ^
                             --client-secret   %AZ_CLIENT_SECRET% ^
                             --tenant-id       %AZ_TENANT_ID%     ^
