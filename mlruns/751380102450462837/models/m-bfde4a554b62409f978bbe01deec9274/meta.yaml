@@ -1,0 +1,10 @@
+artifact_location: file:///C:/Users/inYodreamzz/Desktop/placement-mlops/mlruns/751380102450462837/models/m-bfde4a554b62409f978bbe01deec9274/artifacts
+creation_timestamp: 1775376821909
+experiment_id: '751380102450462837'
+last_updated_timestamp: 1775376826200
+model_id: m-bfde4a554b62409f978bbe01deec9274
+model_type: null
+name: model
+source_run_id: 89eb3bea73e3476f99af50b9922bf402
+status: 2
+status_message: null

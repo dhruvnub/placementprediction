@@ -419,25 +419,30 @@ async function checkHealth() {
 // ── Load metrics from /model/info ─────────────────────────────────────────
 async function loadMetrics() {
   try {
-    const r = await fetch(API + '/model/info');
+    const r = await fetch(API + '/model/info', {signal: AbortSignal.timeout(3000)});
     if (!r.ok) return;
     const d = await r.json();
-    if (d.metrics) {
-      const m = d.metrics;
-      animateVal('mAcc', m.accuracy != null ? (m.accuracy*100).toFixed(1)+'%' : '—');
-      animateVal('mF1',  m.f1       != null ? (m.f1*100).toFixed(1)+'%'       : '—');
-      animateVal('mRoc', m.roc_auc  != null ? (m.roc_auc*100).toFixed(1)+'%'  : '—');
-      document.getElementById('mAccSub').textContent = 'test set';
-      document.getElementById('mF1Sub').textContent  = 'weighted';
-      document.getElementById('mRocSub').textContent = 'area under curve';
-    }
+    if (!d.metrics) return;
+    const m = d.metrics;
+
+    // Show metrics — handle any missing keys gracefully
+    animateVal('mAcc', m.accuracy != null ? (m.accuracy*100).toFixed(1)+'%' : '—');
+    animateVal('mF1',  m.f1       != null ? (m.f1*100).toFixed(1)+'%'       : '—');
+    animateVal('mRoc', m.roc_auc  != null ? (m.roc_auc*100).toFixed(1)+'%'  : '—');
+
+    document.getElementById('mAccSub').textContent = 'test set';
+    document.getElementById('mF1Sub').textContent  = 'f1 weighted';
+    document.getElementById('mRocSub').textContent = 'area under curve';
+
     if (d.model_type) {
       animateVal('mType', d.model_type.replace(/([A-Z])/g,' $1').trim());
     }
     if (d.run_id) {
       document.getElementById('mRunId').textContent = 'run: ' + d.run_id.slice(0,8) + '...';
     }
-  } catch {}
+  } catch(e) {
+    console.log('metrics load failed:', e);
+  }
 }
 
 function animateVal(id, val) {
@@ -488,6 +493,9 @@ async function doPredict() {
       ? 'linear-gradient(90deg,var(--accent),var(--green))'
       : 'linear-gradient(90deg,var(--amber),var(--red))';
     box.className = 'result show';
+
+    // Refresh metrics after predict
+    loadMetrics();
 
     // Add to history
     history.unshift({

@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/inYodreamzz/Desktop/placement-mlops/mlruns/751380102450462837/358f50823a594bfdb569dd93453f71f3/artifacts
+end_time: 1775371237892
+entry_point_name: ''
+experiment_id: '751380102450462837'
+lifecycle_stage: active
+run_id: 358f50823a594bfdb569dd93453f71f3
+run_name: RandomForest-run
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1775371230768
+status: 3
+tags: []
+user_id: inYodreamzz
