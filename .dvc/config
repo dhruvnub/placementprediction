@@ -1,0 +1,5 @@
+[core]
+    remote = azureblob
+['remote "azureblob"']
+    url = azure://dvc-storage/placement
+    connection_string = DefaultEndpointsProtocol=https;AccountName=placementmlopsstorage;AccountKey=Nww2E3BVwORuZnvGp242k44CRhR1wkqnyNkzq0Raw9oPQLOjEl4Pb8gTnIp2+CuHuex2eAkxChVE+AStF9O+rA==;EndpointSuffix=core.windows.net

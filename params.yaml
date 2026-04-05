@@ -1,0 +1,9 @@
+# params.yaml — tracked by DVC (Experiment 7)
+# Change these values and run: dvc repro
+# DVC will detect the change and re-run training automatically
+
+model:
+  n_estimators: 150
+  max_depth: 8
+  test_size: 0.2
+  random_state: 42
